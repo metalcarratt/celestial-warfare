@@ -8,7 +8,7 @@
                 v-if="!props.person.location.eq(building.title) && building.canGo(props.person) && building.built()"
                 :title="'Go to ' + building.title"
             >
-                <img :src="'/assets/img/' + building.icon" />
+                <img :src="image(building.icon)" />
             </span>
         </template>
     </div>
@@ -22,6 +22,8 @@ import { PersonType } from '@/person/Person';
 const props = defineProps({
     person: PersonType
 });
+
+const image = (building) => `${process.env.BASE_URL}assets/img/${building.icon}`;
 </script>
 
 <style scoped>

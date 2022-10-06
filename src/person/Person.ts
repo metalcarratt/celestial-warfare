@@ -41,7 +41,7 @@ export class PersonType {
     }
 
     face() {
-        return `/assets/img/faces/${this.ps.face}.png`;
+        return `assets/img/faces/${this.ps.face}.png`;
     }
 
     gender() {

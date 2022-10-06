@@ -1,6 +1,6 @@
 <template>
     <label :class="props.center ? 'center' : ''">
-        <img :src="`/assets/img/${props.img}`" />
+        <img :src="image()" />
         {{ props.title }}
     </label>
 </template>
@@ -13,6 +13,10 @@ const props = defineProps({
     title: String,
     center: { type: Boolean, default: false }
 })
+
+console.log("process.env.BASE_URL: " + process.env.BASE_URL);
+const image = () => `${process.env.BASE_URL}assets/img/${props.img}`;
+
 </script>
 
 <style scoped>

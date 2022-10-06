@@ -1,6 +1,6 @@
 <template>
     <span class="banner">
-        <img :src="props.person.face()"/>
+        <img :src="faceImage()"/>
         <span class="right">
             <Items>Name: {{ props.person.name() }}</Items>
             <Items v-if="action.hasAction() || props.person.location.is()?.defaultAction">
@@ -23,6 +23,8 @@ const props = defineProps({
 });
 
 const action = computed(() => props.person.action);
+
+const faceImage = () => `${process.env.BASE_URL}${props.person.face()}`;
 
 </script>
 
