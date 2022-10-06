@@ -1,6 +1,6 @@
 <template>
-    <span v-if="props.person.gender() === Gender.Male" ><img src="/assets/img/symbol_male.png" /></span>
-    <span v-else ><img src="/assets/img/symbol_female.png" /></span>
+    <span v-if="props.person.gender() === Gender.Male" ><img :src="maleImage()" /></span>
+    <span v-else ><img :src="femaleImage()" /></span>
 </template>
 
 <script setup>
@@ -11,6 +11,10 @@ import { Gender } from '../data/gender';
 const props = defineProps({
     person : PersonType
 })
+
+const maleImage = () => `${process.env.BASE_URL}assets/img/symbol_male.png`;
+const femaleImage = () => `${process.env.BASE_URL}assets/img/symbol_female.png`;
+
 </script>
 
 <style scoped>

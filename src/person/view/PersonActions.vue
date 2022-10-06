@@ -8,7 +8,7 @@
                 v-if="!props.person.location.eq(building.title) && building.canGo(props.person) && building.built()"
                 :title="'Go to ' + building.title"
             >
-                <img :src="image(building.icon)" />
+                <img :src="image(building)" />
             </span>
         </template>
     </div>
