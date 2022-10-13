@@ -8,7 +8,7 @@ export const LOCATION_ARTEFACT_FURNACE = 'Furnace';
 export const LOCATION_HERB_FARM = 'Herb Farm';
 export const LOCATION_APOTHECARY = 'Apothecary';
 
-export const LOCATION_OUTSIDE = 'Outside';
+export const LOCATION_OUTSIDE = 'Gate';
 
 export const LOCATION_LIBRARY = 'Library';
 

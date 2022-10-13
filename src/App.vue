@@ -1,24 +1,22 @@
 <template>
     <div class="main">
-        <div class="buildings">
-            <AllBuildings />
-            <InventorySection />
-        </div>
+        <SectView v-if="store.isSect()"/>
+        <OutsideView v-if="store.isOutside()" />
         <SidePanel>
-            <ThickButton @click="store.recruit()">Recruit</ThickButton>
+            <ThickButton @click="store.recruit()" v-if="!hasTraveller()">Recruit</ThickButton>
             <PersonDetails :person="selectedPerson()" v-if="selectedPerson()" />
-            <ThickButton @click="nextTick">Next Tick</ThickButton>
+            <ThickButton @click="nextTick" v-if="!hasTraveller()">Next Tick</ThickButton>
         </SidePanel>
     </div>
 </template>
 
 <script setup>
-import InventorySection from '@/inventory/InventorySection.vue';
 import ThickButton from './tick/ThickButton.vue';
 import SidePanel from './components/SidePanel.vue';
 import PersonDetails from './person/view/PersonDetails.vue';
 import store from '@/store';
-import AllBuildings from './building/AllBuildings.vue';
+import SectView from './components/SectView.vue';
+import OutsideView from '@/outside/OutsideView.vue';
 import { nextTick } from './tick/Tick';
 
 const selectedPerson = () => {
@@ -26,6 +24,8 @@ const selectedPerson = () => {
     // console.log(p);
     return p;
 }
+
+const hasTraveller = () => store.hasTraveller();
 
 </script>
 
@@ -46,9 +46,7 @@ h2 {
 </style>
 
 <style scoped>
-.buildings > * {
-    vertical-align: top;
-}
+
 
 .main {
     display: flex;

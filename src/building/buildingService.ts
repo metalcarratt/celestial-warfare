@@ -25,6 +25,18 @@ export const buildingService = {
         }
     },
 
+    getPlotForBuilding(buidingTitle : string) {
+        let foundPlot = null;
+        for (let pindex = 0; pindex < mystore().plots.length; pindex++) {
+            const building = mystore().plots[pindex];
+            if (building && building.title === buidingTitle) {
+                foundPlot = pindex;
+            }
+        }
+        if (!foundPlot) throw `Plot not found for building title ${buidingTitle}`;
+        return foundPlot;
+    },
+
     getPlots() {
         return mystore().plots;
     },

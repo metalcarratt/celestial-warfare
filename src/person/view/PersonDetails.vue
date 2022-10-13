@@ -9,6 +9,7 @@
         <BuildingActions :person="props.person" />
         <PersonGoals :person="props.person" />
         <PersonActions :person="props.person" />
+        <PersonTravel :person="props.person" />
     </PersonWrapper>
 </template>
 
@@ -25,6 +26,7 @@ import PersonActions from './PersonActions.vue';
 import PersonSkills from './PersonSkills.vue';
 import PersonGoals from './PersonGoals.vue';
 import { LOCATION_MOUNTAIN, LOCATION_RESIDENCE, LOCATION_SECLUSION, LOCATION_ARTEFACT_SCHOOL, LOCATION_ARTEFACT_FURNACE } from '@/building/location.enum';
+import PersonTravel from './PersonTravel.vue';
 
 const props = defineProps({
     person: PersonType

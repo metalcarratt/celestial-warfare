@@ -1,5 +1,5 @@
 <template>
-    <div >
+    <div v-if="!props.person.location.isTravelling()">
         <h2>Goals</h2>
         <template v-if="!props.person.action.hasAction() && validGoals().length > 0">
             <select v-model="goalName">

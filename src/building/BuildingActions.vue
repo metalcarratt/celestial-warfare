@@ -1,5 +1,5 @@
 <template>
-    <div v-if="building().actions && !props.person.action.hasAction()">
+    <div v-if="building().actions && !props.person.action.hasAction() && !props.person.location.isTravelling()">
         <h2>Actions...</h2>
         <template v-for="(action, aIndex) in building().actions(person)" :key="aIndex">
             <select v-if="action.targets && action.targets(person)" v-model="target" >

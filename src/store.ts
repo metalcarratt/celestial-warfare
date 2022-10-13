@@ -1,8 +1,12 @@
 import { createStore } from 'vuex';
 import { FarmedHerbType } from './apothecary/farmService';
 import { BuildingsStore, createBuildingsStore } from './building/buildingsStore';
+import { createMapStore, MapStore } from '@/outside/mapStore';
 import { PersonType } from './person/Person';
 import { newPerson, PersonStoreType } from './person/PersonStoreType';
+
+const SECT = 'sect';
+const OUTSIDE = 'outside';
 
 interface StoreType {
 
@@ -45,7 +49,10 @@ interface StoreType {
         built: boolean
     },
 
-    buildingsStore: BuildingsStore
+    buildingsStore: BuildingsStore,
+    mapStore: MapStore,
+
+    view: string
 }
 
 const store = createStore<StoreType>({
@@ -77,7 +84,9 @@ const store = createStore<StoreType>({
         arena: {
             built: false
         },
-        buildingsStore: createBuildingsStore()
+        buildingsStore: createBuildingsStore(),
+        mapStore: createMapStore(),
+        view: SECT
     }
 });
 
@@ -132,5 +141,22 @@ export default {
             // console.log("no person");
             return undefined;
          }
+    },
+
+    isSect() {
+        return store.state.view === SECT;
+    },
+    isOutside() {
+        return store.state.view === OUTSIDE;
+    },
+    goOutside() {
+        store.state.view = OUTSIDE;
+    },
+    goSect() {
+        store.state.view = SECT;
+    },
+
+    hasTraveller() {
+        return store.state.people.some(person => person.travelling);
     }
 }

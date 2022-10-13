@@ -14,6 +14,8 @@ export const nextTick = () => {
         if (person.goals.hasGoal()) {
             person.goals.processGoal();
         }
+
+        person.location.restoreEnergy();
     });
 
     farmService.grow();

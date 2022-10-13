@@ -1,5 +1,5 @@
 <template>
-    <div class="inventory">
+    <div class="inventory" v-if="props.person.inventory.items().length > 0">
         <h2>Inventory</h2>
         <Items v-for="(inventoryItem, iindex) in props.person.inventory.items()" :key="iindex">
             {{ inventoryItem }}: {{ props.person.inventory.has(inventoryItem) }}

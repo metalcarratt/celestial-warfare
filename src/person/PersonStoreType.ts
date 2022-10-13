@@ -14,6 +14,12 @@ export interface PersonStoreType {
     gender: Gender,
     face: string,
     location: string,
+    coords: {
+        x: number,
+        y: number
+    },
+    travelling: boolean,
+    energy: number,
     doing: string,
     
     action?: {
@@ -60,6 +66,12 @@ export const newPerson = () : PersonStoreType => {
         gender,
         face,
         location: LOCATION_RESIDENCE,
+        coords: {
+            x: 4,
+            y: 4
+        },
+        travelling: false,
+        energy: 2,
         doing: '',
         cultivation: {
             level: 0,

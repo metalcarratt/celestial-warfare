@@ -1,7 +1,6 @@
-import { BuildingType } from "@/building/building";
+import { ActionType, BuildingType } from "@/building/building";
 import { LOCATION_OUTSIDE } from "@/building/location.enum";
 import store from "@/store";
-import { exploreForHerbs, exploreForMinerals, exploreForSpiritStones } from "./outsideActions";
 
 export const outside : BuildingType = {
     title: LOCATION_OUTSIDE,
@@ -14,9 +13,13 @@ export const outside : BuildingType = {
 
     canGo : () => true,
 
-    actions: () => [
-        exploreForSpiritStones,
-        exploreForMinerals,
-        exploreForHerbs
-    ]
+    actions: (person) => {
+        const actions : ActionType[] = [];
+        const tile = person.location.getTile();
+        if (tile.resource) {
+            actions.push(tile.resource.action);
+        }
+        return actions;
+    }
 };
+

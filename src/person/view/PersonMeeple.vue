@@ -1,6 +1,7 @@
 <template>
-    <img :src="blueMeepleImg()" v-if="props.person.gender() === Gender.Male" />
-    <img :src="pinkMeepleImg()" v-else />
+    <img id="meeple" class="face" :src="props.person.face()" v-if="props.person.isSelected()" />
+    <img id="meeple" :src="blueMeepleImg()" v-else-if="props.person.gender() === Gender.Male" />
+    <img id="meeple" :src="pinkMeepleImg()" v-else />
 </template>
 
 <script setup>
@@ -17,7 +18,8 @@ const pinkMeepleImg = () => `${process.env.BASE_URL}assets/img/pink_meeple.webp`
 </script>
 
 <style scoped>
-img {
+img#meeple {
     width: 30px;
+    height: 30px;
 }
 </style>

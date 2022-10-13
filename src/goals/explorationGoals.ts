@@ -1,7 +1,7 @@
 import { FIRE_LILY, GINSENG } from "@/apothecary/herbs";
 import { LOCATION_OUTSIDE } from "@/building/location.enum";
 import { MED_SPIRIT_STONE, MINERALS, SPIRIT_STONE } from "@/inventory/items";
-import { exploreForHerbs, exploreForMinerals, exploreForSpiritStones } from "@/outside/outsideActions";
+// import { exploreForHerbs, exploreForMinerals, exploreForSpiritStones } from "@/outside/outsideActions";
 import { PersonType } from "@/person/Person";
 import { GoalType } from "./goals";
 
@@ -15,7 +15,7 @@ export const getSpiritStones : GoalType = {
     complete: (person, quantity) => personHasQuantity(person, quantity ? quantity : 1),
     action: (person) => {
         person.location.goTo(LOCATION_OUTSIDE);
-        person.action.set(exploreForSpiritStones, '');
+        // person.action.set(exploreForSpiritStones, '');
     }
 }
 
@@ -24,7 +24,7 @@ export const getMinerals : GoalType = {
     complete: (person, quantity) => person.inventory.has(MINERALS) >= (quantity ? quantity : 1),
     action: (person) => {
         person.location.goTo(LOCATION_OUTSIDE);
-        person.action.set(exploreForMinerals, '');
+        // person.action.set(exploreForMinerals, '');
     }
 }
 
@@ -33,7 +33,7 @@ export const getGinseng : GoalType = {
     complete: (person, quantity) => person.inventory.has(GINSENG) >= (quantity ? quantity : true),
     action: (person) => {
         person.location.goTo(LOCATION_OUTSIDE);
-        person.action.set(exploreForHerbs, '');
+        // person.action.set(exploreForHerbs, '');
     }
 }
 
@@ -42,6 +42,6 @@ export const getFireLily : GoalType = {
     complete: (person, quantity) => person.inventory.has(FIRE_LILY) >= (quantity ? quantity : true),
     action: (person) => {
         person.location.goTo(LOCATION_OUTSIDE);
-        person.action.set(exploreForHerbs, '');
+        // person.action.set(exploreForHerbs, '');
     }
 }

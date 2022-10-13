@@ -38,7 +38,7 @@ const select = () => buildingService.selectBuilding(props.plotNumber);
     margin: 5px;
     display: inline-block;
     width: 200px;
-    min-height: 200px;
+    height: 200px;
     vertical-align: top;
 }
 

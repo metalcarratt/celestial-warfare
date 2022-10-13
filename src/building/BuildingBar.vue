@@ -1,5 +1,5 @@
 <template>
-    <div class="buildingBar">
+    <TopBox>
         <template v-if="building() && building().built()">
             <BuildingLabel :img="building().icon" :title="building().title" />
             <PersonSynopsis v-for="(person, pindex) in building().occupants()" :key="pindex" :person="person"/>
@@ -12,7 +12,7 @@
                 </span>
             </div>
         </template>
-    </div>
+    </TopBox>
 </template>
 
 <script setup>
@@ -20,6 +20,7 @@ import BuildingLabel from './BuildingLabel.vue';
 import { buildingService } from './buildingService';
 import PersonSynopsis from "@/person/view/PersonSynopsis.vue";
 import { allBuildings } from './allBuildings';
+import TopBox from '@/components/TopBox.vue';
 
 const building = () => buildingService.getSelectedBuilding();
 
@@ -29,11 +30,6 @@ const build = (building) => buildingService.build(building);
 </script>
 
 <style scoped>
-.buildingBar {
-    border: 1px solid #ccc;
-    padding: 5px;
-    height: 150px;
-}
 
 .chooseBuilding {
     display: flex;

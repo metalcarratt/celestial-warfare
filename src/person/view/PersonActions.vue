@@ -1,10 +1,10 @@
 <template>
-    <div v-if="!props.person.action.hasAction()">
+    <div v-if="!props.person.action.hasAction() && store.isSect() && !props.person.location.isTravelling()">
         <h2>Go to...</h2>
         <template v-for="(building, bIndex) in allBuildings" :key="bIndex">
             <span 
                 class="goto"
-                @click="props.person.location.goTo(building.title)"
+                @click="goTo(building)"
                 v-if="!props.person.location.eq(building.title) && building.canGo(props.person) && building.built()"
                 :title="'Go to ' + building.title"
             >
@@ -18,12 +18,24 @@
 import { defineProps } from 'vue';
 import { allBuildings } from '@/building/allBuildings';
 import { PersonType } from '@/person/Person';
+import store from '@/store';
+import { buildingService } from '@/building/buildingService';
+import { LOCATION_OUTSIDE } from '@/building/location.enum';
 
 const props = defineProps({
     person: PersonType
 });
 
 const image = (building) => `${process.env.BASE_URL}assets/img/${building.icon}`;
+
+const goTo = (building) => {
+    props.person.location.goTo(building.title);
+    if (building.title !== LOCATION_OUTSIDE) {
+        buildingService.selectBuilding(buildingService.getPlotForBuilding(building.title));
+    } else {
+        store.goOutside();
+    }
+}
 </script>
 
 <style scoped>
